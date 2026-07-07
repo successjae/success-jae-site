@@ -1,0 +1,12 @@
+# Netlify configuration — standalone Next.js project at the repository root.
+
+[build]
+  command = "pnpm build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Official Next.js runtime — handles SSR/ISR and next/image.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
