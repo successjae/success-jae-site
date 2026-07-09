@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import NetworkCanvas from './NetworkCanvas';
 import RotatingText from './RotatingText';
@@ -11,14 +10,14 @@ const floatingCards = [
 		label: 'Workflow',
 		title: 'Client intake → CRM → Follow-up',
 		accent: 'text-electric-300',
-		position: 'right-[26%] top-[16%]',
+		position: 'right-[6%] top-[18%]',
 		animation: 'animate-float-delayed',
 	},
 	{
 		label: 'Automation',
 		title: '38 hrs/mo of manual work removed',
 		accent: 'text-gold-300',
-		position: 'right-[22%] bottom-[16%]',
+		position: 'right-[10%] bottom-[18%]',
 		animation: 'animate-float',
 	},
 ] as const;
@@ -33,7 +32,26 @@ export default function Hero() {
 		<section className="relative flex min-h-[100svh] items-center overflow-hidden pt-28 pb-20">
 			{/* layered cinematic background */}
 			<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#101024_0%,#050507_60%)]" aria-hidden />
-			<NetworkCanvas className="absolute inset-0 h-full w-full" />
+
+			{/* full-screen cinematic video — Success Jae working in a modern office.
+			    Falls back to the portrait poster until /videos/jae-office.mp4 is added. */}
+			<video
+				className="absolute inset-0 h-full w-full object-cover"
+				autoPlay
+				loop
+				muted
+				playsInline
+				poster="/images/jae-portrait.jpg"
+				aria-hidden
+			>
+				<source src="/videos/jae-office.mp4" type="video/mp4" />
+			</video>
+
+			{/* readability scrim: darker on the left where the headline sits */}
+			<div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/75 to-ink-950/35" aria-hidden />
+			<div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/20 to-ink-950/50" aria-hidden />
+
+			<NetworkCanvas className="absolute inset-0 h-full w-full opacity-70" />
 			<div
 				className="absolute -left-40 top-1/4 h-[480px] w-[480px] rounded-full bg-electric-500/10 blur-[140px] animate-pulse-slow"
 				aria-hidden
@@ -53,38 +71,6 @@ export default function Hero() {
 				className="pointer-events-none absolute inset-0 hidden xl:block"
 				aria-hidden
 			>
-				{/* floating portrait — Success Jae in the brown jacket, part of the hero animation */}
-				<figure className="glass-card absolute right-[5%] top-[15%] w-72 animate-float overflow-hidden !p-0 shadow-[0_0_60px_-20px_rgba(212,169,78,0.45)]">
-					<div className="relative aspect-[4/5]">
-						<Image
-							src="/images/jae-portrait.jpg"
-							alt=""
-							fill
-							priority
-							sizes="288px"
-							className="object-cover object-top"
-						/>
-						<div
-							className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink-950/95 via-ink-950/40 to-transparent"
-							aria-hidden
-						/>
-						<figcaption className="absolute inset-x-0 bottom-0 p-4">
-							<p className="font-display text-sm font-bold text-white">
-								Jared &ldquo;Success Jae&rdquo; Vincent
-							</p>
-							<p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-300">
-								AI Automation · Cloud · Systems
-							</p>
-						</figcaption>
-						<span
-							className="absolute right-3 top-3 flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-ink-950/70 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-300 backdrop-blur"
-						>
-							<span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-							Building
-						</span>
-					</div>
-				</figure>
-
 				{floatingCards.map((card) => (
 					<div key={card.title} className={`glass-card absolute w-64 p-4 ${card.position} ${card.animation}`}>
 						<p className={`text-[10px] font-semibold uppercase tracking-[0.25em] ${card.accent}`}>
