@@ -48,8 +48,13 @@ export default function Hero() {
 			</video>
 
 			{/* readability scrim: darker on the left where the headline sits */}
-			<div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/75 to-ink-950/35" aria-hidden />
-			<div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/20 to-ink-950/50" aria-hidden />
+			<div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/80 to-ink-950/45" aria-hidden />
+			<div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/25 to-ink-950/55" aria-hidden />
+			{/* cinematic vignette — softens the close-up so it reads as atmosphere, not a portrait */}
+			<div
+				className="absolute inset-0 bg-[radial-gradient(ellipse_at_65%_38%,transparent_28%,rgba(5,5,7,0.55)_78%,rgba(5,5,7,0.85)_100%)]"
+				aria-hidden
+			/>
 
 			<NetworkCanvas className="absolute inset-0 h-full w-full opacity-70" />
 			<div
