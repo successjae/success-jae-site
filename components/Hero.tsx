@@ -36,7 +36,7 @@ export default function Hero() {
 			{/* full-screen cinematic video — Success Jae working in a modern office.
 			    Falls back to the portrait poster until /videos/jae-office.mp4 is added. */}
 			<video
-				className="absolute inset-0 h-full w-full object-cover"
+				className="absolute inset-0 h-full w-full object-cover object-top"
 				autoPlay
 				loop
 				muted
